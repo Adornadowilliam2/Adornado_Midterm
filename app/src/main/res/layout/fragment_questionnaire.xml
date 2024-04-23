@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Questionnaire">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="10dp"
+                android:background="#FFC107"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvGroupName"
+                app:layout_constraintStart_toStartOf="@+id/tvGroupName"
+                app:layout_constraintTop_toBottomOf="@+id/tvGroupName"
+                tools:text="Non-sense Question" />
+
+            <Button
+                android:id="@+id/btnGet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/submit"
+                app:layout_constraintEnd_toEndOf="@+id/rgItems"
+                app:layout_constraintStart_toStartOf="@+id/rgItems"
+                app:layout_constraintTop_toBottomOf="@+id/rgItems" />
+
+            <TextView
+                android:id="@+id/tvGroupName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:background="#FFC107"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/quesNum"
+                tools:text="My Question" />
+
+            <RadioGroup
+                android:id="@+id/rgItems"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvResult"
+                app:layout_constraintStart_toStartOf="@+id/tvResult"
+                app:layout_constraintTop_toBottomOf="@+id/totalcorrect">
+
+                <RadioButton
+                    android:id="@+id/rbItem1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <RadioButton
+                    android:id="@+id/rbItem2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rbItem3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rbItem4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/quesNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#FFC107"
+                android:textColor="#0C0C0C"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Question Number" />
+
+            <TextView
+                android:id="@+id/totalcorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#FFC107"
+                tools:text="out of 10 answered correctly"
+                android:textColor="#2E2B2B"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvResult"
+                app:layout_constraintStart_toStartOf="@+id/tvResult"
+                app:layout_constraintTop_toBottomOf="@+id/tvResult" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+</layout>

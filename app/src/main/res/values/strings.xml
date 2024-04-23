@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Adornado_Midterm</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="submit">Submit</string>
+    <string name="you_are_my_sunshine">You are my sunshine</string>
+    <string name="you_are_my_sunshine_quiz">You are my sunshine quiz</string>
+    <string name="play">Play</string>
+    <string name="welcome">Welcome</string>
+    <string name="guideline_and_instruction">GuideLine and Instruction</string>
+    <string name="freirenimage">FreirenImage</string>
+    <string name="guidelines">Guidelines</string>
+    <string name="bewater">Bewater</string>
+    <string name="paragraph">Let your creativity run wild as you construct a nonsensical question incorporating multiple queries numbered from 1 to 10, and then repeat the process once more, pushing the limits of imagination and embracing the delightful chaos of whimsical inquiries. Have fun and let your nonsensical spirit soar! The passing score is 5 out of 10. Just don\'t concentrate on one question. Be water, just like Bruce Lee said.</string>
+    <string name="landing_page">Landing Page</string>
+    <string name="guideline">GuideLines</string>
+    <string name="result">Result</string>
+    <string name="imgscoreouput">ImgScoreOuput</string>
+    <string name="you_re_score">You\'re score:</string>
+    <string name="go_back">Go Back</string>
+    <string name="wrong">Wrong Answer</string>
+</resources>
