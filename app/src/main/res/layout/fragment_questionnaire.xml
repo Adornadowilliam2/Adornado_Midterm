@@ -5,6 +5,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".Questionnaire">
 
+    <data>
+        <variable
+            name="Result"
+            type="String" />
+        <variable
+            name="QuestioNum"
+            type="String" />
+        <variable
+            name="RightAns"
+            type="String" />
+        <variable
+            name="RecentSele"
+            type="String" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,18 +31,17 @@
 
             <TextView
                 android:id="@+id/tvResult"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="19dp"
-                android:layout_marginEnd="10dp"
                 android:background="#FFC107"
                 android:textColor="#000000"
-                android:textSize="24sp"
+                android:textSize="16sp"
+                android:text="@{RecentSele}"
                 app:layout_constraintEnd_toEndOf="@+id/tvGroupName"
                 app:layout_constraintStart_toStartOf="@+id/tvGroupName"
                 app:layout_constraintTop_toBottomOf="@+id/tvGroupName"
-                tools:text="Non-sense Question" />
+                tools:text="Recent Answer: " />
 
             <Button
                 android:id="@+id/btnGet"
@@ -58,9 +72,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                app:layout_constraintEnd_toEndOf="@+id/tvResult"
-                app:layout_constraintStart_toStartOf="@+id/tvResult"
-                app:layout_constraintTop_toBottomOf="@+id/totalcorrect">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvGroupName"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecAnswer">
 
                 <RadioButton
                     android:id="@+id/rbItem1"
@@ -91,6 +105,7 @@
                 android:background="#FFC107"
                 android:textColor="#0C0C0C"
                 android:textSize="16sp"
+                android:text="@{QuestioNum}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -102,12 +117,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="#FFC107"
-                tools:text="out of 10 answered correctly"
+                android:text="@{Result}"
                 android:textColor="#2E2B2B"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/tvResult"
                 app:layout_constraintStart_toStartOf="@+id/tvResult"
-                app:layout_constraintTop_toBottomOf="@+id/tvResult" />
+                app:layout_constraintTop_toBottomOf="@+id/tvResult"
+                tools:text="Correct/ Wrong" />
+
+            <TextView
+                android:id="@+id/tvRecAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFC107"
+                android:textColor="#000000"
+                android:text="@{RightAns}"
+                app:layout_constraintEnd_toEndOf="@+id/totalcorrect"
+                app:layout_constraintStart_toStartOf="@+id/totalcorrect"
+                app:layout_constraintTop_toBottomOf="@+id/totalcorrect"
+                tools:text="Recent Choose" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.adornado_midterm.databinding.FragmentQuestionnaireBinding
 
 class Questionnaire : Fragment() {
@@ -61,10 +61,10 @@ class Questionnaire : Fragment() {
         )
     private var members: MutableList<String> = mutableListOf()
     private var selectedMember: String = ""
-    private var questionString: String = ""
+    private var questionRight = 0
     //currentIndexGroup will be incremented
     private var currentIndexGroup = 0
-    private var score = 0
+    private var score = 1
     //to know if we are at the last group
     private val max_group = groups.count() - 1
 
@@ -85,6 +85,11 @@ class Questionnaire : Fragment() {
             viewmodel.setAllGroups(groups)
             //preserve the shuffled groups
             viewmodel.setAllCopyGroups(groups)
+            binding.questioNum = score.toString()
+
+            when(score){
+                1 -> score++
+            }
         }
         viewmodel.groups.observe(viewLifecycleOwner){grp: MutableList<Group> ->
             if(savedInstanceState == null){
@@ -97,12 +102,11 @@ class Questionnaire : Fragment() {
             }
             else{
                 currentIndexGroup = savedInstanceState.getInt("cquestion_key")
-                questionString = savedInstanceState.getString("cquestion_string").toString()
+                questionRight = savedInstanceState.getInt("cquestion_string")
                 members = savedInstanceState.getStringArrayList("members")?.toMutableList()!!
                 selectedMember = savedInstanceState.getString("selected_mem").toString()
                 score = savedInstanceState.getInt("score_key")
-                binding.tvResult.text = selectedMember
-                binding.quesNum.text = questionString
+                binding.rightAns = "Recent Answer: $selectedMember"
             }
             //apply to layout
             binding.tvGroupName.text = grp[currentIndexGroup].groupName
@@ -113,10 +117,12 @@ class Questionnaire : Fragment() {
 
             //on orientation change, buttons and some objects needs to stay hidden
             if (currentIndexGroup >= max_group){
-                binding.btnGet.visibility = View.GONE
                 binding.rgItems.visibility = View.GONE
                 binding.tvGroupName.visibility = View.GONE
+                binding.btnGet.visibility = View.GONE
+                binding.root.findNavController().navigate(QuestionnaireDirections.actionQuestionnaireToResult())
             }
+
 
             //button events can be placed inside an observer
             binding.btnGet.setOnClickListener { view: View ->
@@ -144,15 +150,23 @@ class Questionnaire : Fragment() {
                         binding.tvResult.text = selectedMember
                         if(currentIndexGroup == max_group){
                             //to another fragment
-                            binding.btnGet.visibility = View.GONE
+
                             binding.rgItems.visibility = View.GONE
                             binding.tvGroupName.visibility = View.GONE
+                            binding.btnGet.visibility = View.GONE
+                            binding.root.findNavController().navigate(QuestionnaireDirections.actionQuestionnaireToResult())
                         }else{
+                            binding.questioNum = score.toString()
                             //let's say the star member is index position 1
                             if(members[selectedItem] == cpy[currentIndexGroup].groupMembers[1]){
                                 binding.rgItems.clearCheck()
                                 currentIndexGroup++
+                                binding.result = "Correct!!"
+                                binding.rightAns = "Recent Answer: $selectedMember"
+                                binding.recentSele = questionRight.toString()
+                                questionRight++
 
+                                score++
                                 //layout
                                 binding.tvGroupName.text = grp[currentIndexGroup].groupName
                                 //shuffle members
@@ -168,10 +182,12 @@ class Questionnaire : Fragment() {
                             } else{
                                 // still get the answer even if it is wrong
                                 selectedMember = members[selectedItem]
-                                binding.tvResult.text = selectedMember
+                                binding.rightAns = "Recent Answer: $selectedMember"
                                 binding.rgItems.clearCheck()
+                                binding.recentSele = questionRight.toString()
                                 currentIndexGroup++
-
+                                binding.result = "Wrong!!"
+                                score++
                                 // layout
                                 binding.tvGroupName.text = grp[currentIndexGroup].groupName
                                 // shuffle members
@@ -199,7 +215,7 @@ class Questionnaire : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         // current group
         outState.putInt("cquestion_key",currentIndexGroup)
-        outState.putString("cquestion_string", questionString)
+        outState.putInt("cquestion_string", questionRight)
         //Answer
         outState.putStringArrayList("members",ArrayList(members))
         //Answer type
